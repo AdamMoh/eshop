@@ -20,4 +20,19 @@ public class ProductRepository {
     public Iterator<Product> findAll(){
         return productData.iterator();
     }
+
+    public Product findById(int id) {
+        Iterator<Product> productIterator = findAll();
+        List<Product> allProduct = new ArrayList<>();
+        productIterator.forEachRemaining(allProduct::add);
+
+
+        for (Product product : allProduct) {
+            if (product.getProductId().equals(String.valueOf(id))) {
+                System.out.println("Masuk kondisi");
+                return product;
+            }
+        }
+        return null;
+    }
 }
