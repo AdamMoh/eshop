@@ -1,8 +1,8 @@
 package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
-import id.ac.ui.cs.advprog.eshop.service.ProductServiceImpl;
-import lombok.RequiredArgsConstructor;
+import id.ac.ui.cs.advprog.eshop.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +14,9 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/product")
-@RequiredArgsConstructor
 public class ProductController {
-    private ProductServiceImpl service;
+    @Autowired
+    private ProductService service;
 
     @GetMapping("/create")
     public String createProductPage(Model model){
@@ -35,6 +35,6 @@ public class ProductController {
     public String productListPage(Model model){
             List<Product> allProducts = service.findAll();
             model.addAttribute("products", allProducts);
-            return "productList";
+            return "ProductList";
     }
 }
