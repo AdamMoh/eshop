@@ -29,8 +29,18 @@ public class ProductRepository {
 
         for (Product product : allProduct) {
             if (product.getProductId().equals(String.valueOf(id))) {
-                System.out.println("Masuk kondisi");
                 return product;
+            }
+        }
+        return null;
+    }
+
+    public Product update(Product updatedProduct, String newDataId) {
+        for (int i = 0; i < productData.size(); i++) {
+            Product product = productData.get(i);
+            if (product.getProductId().equals(newDataId)) {
+                productData.set(i, updatedProduct);
+                return updatedProduct;
             }
         }
         return null;

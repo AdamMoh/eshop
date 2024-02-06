@@ -39,4 +39,14 @@ public class ProductServiceImpl implements ProductService {
 
         return "Sukses";
     }
+
+    @Override
+    public Product getById(String dataId) {
+        return productRepository.findById(Integer.parseInt(dataId));
+    }
+
+    @Override
+    public Product update(Product updatedProduct, String newDataId) {
+        return productRepository.update(updatedProduct, newDataId);
+    }
 }
