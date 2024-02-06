@@ -21,14 +21,14 @@ public class ProductRepository {
         return productData.iterator();
     }
 
-    public Product findById(int id) {
+    public Product findById(String id) {
         Iterator<Product> productIterator = findAll();
         List<Product> allProduct = new ArrayList<>();
         productIterator.forEachRemaining(allProduct::add);
 
 
         for (Product product : allProduct) {
-            if (product.getProductId().equals(String.valueOf(id))) {
+            if (product.getProductId().equals(id)) {
                 return product;
             }
         }
@@ -43,6 +43,14 @@ public class ProductRepository {
                 return updatedProduct;
             }
         }
+        return null;
+    }
+
+    public Product delete(String id){
+        Product dataDetail = findById(id);
+
+        productData.remove(dataDetail);
+
         return null;
     }
 }

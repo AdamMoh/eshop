@@ -31,18 +31,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public String deleteData(int id) {
-        Product dataDetail = productRepository.findById(id);
-        List<Product> productIterator = findAll();
-
-        productIterator.remove(dataDetail);
+    public String deleteData(String id) {
+        productRepository.delete(id);
 
         return "Sukses";
     }
 
     @Override
     public Product getById(String dataId) {
-        return productRepository.findById(Integer.parseInt(dataId));
+        return productRepository.findById(dataId);
     }
 
     @Override

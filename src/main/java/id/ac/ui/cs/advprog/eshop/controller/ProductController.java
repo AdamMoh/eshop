@@ -37,8 +37,8 @@ public class ProductController {
 
     @GetMapping("/delete/{dataid}")
     public String productDelete(@PathVariable String dataid){
-        service.deleteData(Integer.parseInt(dataid));
-        return "ProductList";
+        service.deleteData(dataid);
+        return "redirect:/product/list";
     }
 
     @GetMapping("/edit/{dataId}")
