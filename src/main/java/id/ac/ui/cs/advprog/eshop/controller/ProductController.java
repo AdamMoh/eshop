@@ -36,7 +36,7 @@ public class ProductController {
     }
 
     @GetMapping("/delete/{dataid}")
-    public String productListPage(@PathVariable String dataid){
+    public String productDelete(@PathVariable String dataid){
         service.deleteData(Integer.parseInt(dataid));
         return "ProductList";
     }
