@@ -55,6 +55,9 @@ public class CreateProductFunctionalTest {
         // Verify that the newly created product appears in the product list
         WebElement productListTable = driver.findElement(By.tagName("table"));
         assertTrue(productListTable.getText().contains("Sampo Cap Bambang"));
+
+        WebElement deleteButton = driver.findElement(By.id("linkDelete"));
+        deleteButton.click();
     }
 
     // Close the WebDriver after all tests are finished
