@@ -2,10 +2,13 @@ package id.ac.ui.cs.advprog.eshop.model;
 
 import lombok.Data;
 import lombok.Generated;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 public class Product {
     private static int productIdCounter = 1;
     private String productId;

@@ -29,4 +29,16 @@ class ProductTest {
     void testGetProductQuantity(){
         assertEquals(100, this.product.getProductQuantity());
     }
+
+    @Test
+    public void testProductIdCounter() {
+        // Create multiple products
+        Product product1 = new Product();
+        Product product2 = new Product();
+        Product product3 = new Product();
+
+        // Test if each product has a unique productId
+        assertNotEquals(product1.getProductId(), product2.getProductId());
+        assertNotEquals(product2.getProductId(), product3.getProductId());
+    }
 }
