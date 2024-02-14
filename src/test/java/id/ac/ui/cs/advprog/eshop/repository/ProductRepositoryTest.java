@@ -162,19 +162,15 @@ class ProductRepositoryTest {
         product.setProductQuantity(100);
         productRepository.create(product);
 
-        // Create a new product with different ID
         Product newProduct = new Product();
         newProduct.setProductId("a0f9de46-90b1-437d-a0bf-d0821dde9096");
         newProduct.setProductName("Sampo Cap Usep");
         newProduct.setProductQuantity(50);
 
-        // Attempt to update the product with the new product's details
         productRepository.update(newProduct, newProduct.getProductId());
 
-        // Retrieve the product from the repository
         Product retrievedProduct = productRepository.findById(product.getProductId());
 
-        // Check if the product details remain unchanged
         assertEquals("Sampo Cap Bambang", retrievedProduct.getProductName());
         assertEquals(100, retrievedProduct.getProductQuantity());
     }

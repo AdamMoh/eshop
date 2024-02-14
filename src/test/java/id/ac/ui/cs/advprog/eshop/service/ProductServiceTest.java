@@ -58,15 +58,12 @@ public class ProductServiceTest {
 
     @Test
     public void testDeleteProduct() {
-        // Arrange
         String productId = "123";
-        Product deletedProduct = new Product(); // Create a dummy product for deletion
+        Product deletedProduct = new Product();
         when(productRepository.delete(productId)).thenReturn(deletedProduct);
 
-        // Act
         Product result = productService.deleteData(productId);
 
-        // Assert
         assertNotNull(result);
         assertEquals(deletedProduct, result);
         verify(productRepository, times(1)).delete(productId);
@@ -77,7 +74,7 @@ public class ProductServiceTest {
     public void testGetProductById() {
         String productId = "456";
         Product expectedProduct = new Product();
-        expectedProduct.setProductId(productId); // Set product ID
+        expectedProduct.setProductId(productId);
         when(productRepository.findById(productId)).thenReturn(expectedProduct);
 
         Product retrievedProduct = productService.getById(productId);
