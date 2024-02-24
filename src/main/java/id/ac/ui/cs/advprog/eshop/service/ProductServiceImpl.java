@@ -2,7 +2,7 @@ package id.ac.ui.cs.advprog.eshop.service;
 
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
-import id.ac.ui.cs.advprog.eshop.repository.ProductRepository;
+import id.ac.ui.cs.advprog.eshop.repository.ProductRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +14,17 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
-    private ProductRepository productRepository;
+    private ProductRepositoryImpl productRepositoryImpl;
 
     @Override
     public Product create(Product product) {
-        productRepository.create(product);
+        productRepositoryImpl.create(product);
         return product;
     }
 
     @Override
     public List<Product> findAll() {
-        Iterator<Product> productIterator = productRepository.findAll();
+        Iterator<Product> productIterator = productRepositoryImpl.findAll();
         List<Product> allProduct = new ArrayList<>();
         productIterator.forEachRemaining(allProduct::add);
         return allProduct;
@@ -32,16 +32,16 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product deleteData(String id) {
-        return productRepository.delete(id);
+        return productRepositoryImpl.delete(id);
     }
 
     @Override
     public Product getById(String dataId) {
-        return productRepository.findById(dataId);
+        return productRepositoryImpl.findById(dataId);
     }
 
     @Override
     public Product update(Product updatedProduct, String newDataId) {
-        return productRepository.update(updatedProduct, newDataId);
+        return productRepositoryImpl.update(updatedProduct, newDataId);
     }
 }

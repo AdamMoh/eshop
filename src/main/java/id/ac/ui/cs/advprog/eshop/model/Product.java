@@ -10,12 +10,13 @@ import java.util.UUID;
 @Getter
 @Setter
 public class Product {
-    private static int productIdCounter = 1;
+//    private static int productIdCounter = 1;
     private String productId;
     private String productName;
     private int productQuantity;
 
-    public Product() {
-        this.productId = String.valueOf(productIdCounter++);
-    }
+//    public Product() {
+//
+//        this.productId = String.valueOf(productIdCounter++);
+//    }
 }
