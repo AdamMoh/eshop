@@ -1,15 +1,16 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
 
+
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.Arrays;
 import java.util.HashMap;
 
 @Getter
-//@Setter
 @Builder
 public class Payment {
 
@@ -19,12 +20,11 @@ public class Payment {
         private HashMap<String, String> paymentData;
 
         public Payment(String id, String method, HashMap<String, String> paymentData) {
-            String[] methodList = {"CASH", "COD", "BANK", "VOUCHER"};
 
             this.id = id;
-            this.status = "WAITING_PAYMENT";
+            this.status = PaymentStatus.CHECKING.getValue();
 
-            if(Arrays.stream(methodList).noneMatch(item -> (item.equals(method)))){
+            if(!PaymentMethod.contains(method)){
                 throw new IllegalArgumentException();
             }else{
                 this.method = method;
@@ -38,11 +38,10 @@ public class Payment {
         }
 
     public Payment(String id, String method, String status, HashMap<String, String> paymentData) {
-        String[] methodList = {"CASH", "COD", "BANK", "VOUCHER"};
         this.id = id;
         this.status = status;
 
-        if(Arrays.stream(methodList).noneMatch(item -> (item.equals(method)))){
+        if(!PaymentMethod.contains(method)){
             throw new IllegalArgumentException();
         }else{
             this.method = method;
@@ -55,9 +54,8 @@ public class Payment {
         }
     }
     public void setStatus(String status){
-        String[] statusList = {"REJECTED", "SUCCESS"};
 
-        if(Arrays.stream(statusList).noneMatch(item -> (item.equals(status)))){
+        if(!PaymentStatus.contains(status)){
             throw new IllegalArgumentException();
         }else{
             this.status = status;
