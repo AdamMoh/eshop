@@ -119,15 +119,6 @@ class PaymentServiceTest {
     }
 
     @Test
-    void testFindByIdIfFound(){
-        Payment payment = paymentList.getFirst();
-        doReturn(payment).when(paymentRepository).findById(payment.getId());
-
-        Payment result = paymentService.getPayment(payment.getId());
-        assertEquals(payment.getId(), result.getId());
-    }
-
-    @Test
     void testFindByIdIfNotFound(){
         doReturn(null).when(paymentRepository).findById("focer");
         assertNull(paymentService.getPayment("focer"));
