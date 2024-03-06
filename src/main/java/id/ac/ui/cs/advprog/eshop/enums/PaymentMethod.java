@@ -6,7 +6,6 @@ import lombok.Getter;
 public enum PaymentMethod {
 
     VOUCHER("VOUCHER"),
-    CASH("CASH"),
     COD("CASH_ON_DELIVERY");
 
     private final String value;
