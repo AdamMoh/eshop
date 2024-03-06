@@ -23,12 +23,7 @@ public class Payment {
 
             this.id = id;
             this.status = PaymentStatus.CHECKING.getValue();
-
-            if(!PaymentMethod.contains(method)){
-                throw new IllegalArgumentException();
-            }else{
-                this.method = method;
-            }
+            this.method = method;
 
             if(paymentData.isEmpty()){
                 throw new IllegalArgumentException();
@@ -41,10 +36,10 @@ public class Payment {
         this.id = id;
         this.status = status;
 
-        if(!PaymentMethod.contains(method)){
-            throw new IllegalArgumentException();
-        }else{
+        if(PaymentMethod.contains(method)){
             this.method = method;
+        }else{
+            throw new IllegalArgumentException();
         }
 
         if(paymentData.isEmpty()){

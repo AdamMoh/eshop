@@ -25,11 +25,11 @@ public class PaymentRepositoryTest {
 
         HashMap<String, String> paymentData1 = new HashMap<>();
         paymentData1.put("voucherCode", "ESHOP1234ABC5678");
-        Payment payment1 = new Payment("123456789",PaymentMethod.VOUCHER.getValue(), paymentData1);
+        Payment payment1 = new Payment("123456789","VOUCHER", paymentData1);
         paymentData.add(payment1);
 
         HashMap<String, String> paymentData2 = new HashMap<>();
-        paymentData1.put("address", "tnb");
+        paymentData2.put("address", "tnb");
         paymentData2.put("deliveryFee", "10000");
         Payment payment2 = new Payment("123456489",PaymentMethod.COD.getValue(), paymentData2);
         paymentData.add(payment2);
@@ -131,7 +131,7 @@ public class PaymentRepositoryTest {
         for (Payment payment: paymentData){
             paymentRepository.save(payment);
         }
-        
+
         Payment findResult = paymentRepository.findById(paymentData.get(0).getId());
 
         assertEquals(paymentData.get(0).getId(), findResult.getId());

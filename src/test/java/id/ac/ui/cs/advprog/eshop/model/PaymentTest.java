@@ -77,7 +77,7 @@ public class PaymentTest {
         paymentData.put("note", "gift");
         paymentData.put("address", "tnb");
         paymentData.put("deliveryFee", "10000");
-        Payment payment = new Payment("123456789", "CASH_ON_DELIVERY", "CHECKING_STATUS", paymentData);
+        Payment payment = new Payment("123456789", "CASH_ON_DELIVERY", paymentData);
 
         assertEquals("CHECKING_STATUS", payment.getStatus());
         assertEquals("123456789", payment.getId());
@@ -107,7 +107,7 @@ public class PaymentTest {
         paymentData.put("deliveryFee", "10000");
 
         assertThrows (IllegalArgumentException.class, ()-> {
-            Payment payment = new Payment("123456789", "focer", paymentData);
+            Payment payment = new Payment("123456789", "focer", PaymentStatus.CHECKING.getValue(), paymentData);
         });
     }
     @Test
