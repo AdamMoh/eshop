@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,10 +37,10 @@ public class PaymentRepositoryTest {
 
     @Test
     void testSaveCreate(){
-        Payment payment = paymentData.get(0);
+        Payment payment = paymentData.getFirst();
         Payment result = paymentRepository.save(payment);
 
-        Payment findResult = paymentRepository.findById(paymentData.get(0).getId());
+        Payment findResult = paymentRepository.findById(result.getId());
 
         assertEquals(payment.getId(), result.getId());
         assertEquals(payment.getId(), findResult.getId());
