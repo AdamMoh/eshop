@@ -1,5 +1,6 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -16,6 +17,8 @@ public class PaymentTest {
 
         HashMap<String, String> paymentData = new HashMap<>();
         paymentData.put("VOUCHER", "ESHOP1234ABC5678");
+        paymentData.put("address", "tnb");
+        paymentData.put("deliveryFee", "10000");
 
         Payment payment = new Payment(id, method, status, paymentData);
 
@@ -23,12 +26,16 @@ public class PaymentTest {
         assertEquals(method, payment.getMethod());
         assertEquals(status, payment.getStatus());
         assertEquals("ESHOP1234ABC5678", payment.getPaymentData().get("VOUCHER"));
+        assertEquals("tnb", payment.getPaymentData().get("address"));
+        assertEquals("10000", payment.getPaymentData().get("deliveryFee"));
     }
 
     @Test
     void testCreatePaymentSuccessStatus(){
         HashMap<String, String> paymentData = new HashMap<>();
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
+        paymentData.put("address", "tnb");
+        paymentData.put("deliveryFee", "10000");
         Payment payment = new Payment("123456789", "VOUCHER", "SUCCESS", paymentData);
 
         assertEquals("SUCCESS", payment.getStatus());
@@ -38,9 +45,11 @@ public class PaymentTest {
     void testCreatePaymentRejectStatus(){
         HashMap<String, String> paymentData = new HashMap<>();
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
-        Payment payment = new Payment("123456789", "VOUCHER", "REJECTED", paymentData);
+        paymentData.put("address", "tnb");
+        paymentData.put("deliveryFee", "10000");
+        Payment payment = new Payment("123456789", "VOUCHER", PaymentStatus.REJECTED.getValue(), paymentData);
 
-        assertEquals("REJECTED", payment.getStatus());
+        assertEquals(PaymentStatus.REJECTED.getValue(), payment.getStatus());
     }
 
     @Test
@@ -48,6 +57,8 @@ public class PaymentTest {
 
         HashMap<String, String> paymentData = new HashMap<>();
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
+        paymentData.put("address", "tnb");
+        paymentData.put("deliveryFee", "10000");
         Payment payment = new Payment("123456789", "VOUCHER", "CHECKING_STATUS", paymentData);
 
         assertTrue(payment.getPaymentData().containsKey("voucherCode"));
@@ -55,24 +66,32 @@ public class PaymentTest {
         assertEquals("123456789", payment.getId());
         assertEquals("VOUCHER", payment.getMethod());
         assertEquals("ESHOP1234ABC5678", payment.getPaymentData().get("voucherCode"));
+        assertEquals("tnb", payment.getPaymentData().get("address"));
+        assertEquals("10000", payment.getPaymentData().get("deliveryFee"));
 
     }
     @Test
     void testCreatePaymentCashDefaultStatus(){
         HashMap<String, String> paymentData = new HashMap<>();
         paymentData.put("note", "gift");
+        paymentData.put("address", "tnb");
+        paymentData.put("deliveryFee", "10000");
         Payment payment = new Payment("123456789", "CASH", "CHECKING_STATUS", paymentData);
 
         assertEquals("CHECKING_STATUS", payment.getStatus());
         assertEquals("123456789", payment.getId());
         assertEquals("CASH", payment.getMethod());
         assertEquals("gift", payment.getPaymentData().get("note"));
+        assertEquals("tnb", payment.getPaymentData().get("address"));
+        assertEquals("10000", payment.getPaymentData().get("deliveryFee"));
     }
 
     @Test
     void testSetStatusToReject(){
         HashMap<String, String> paymentData = new HashMap<>();
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
+        paymentData.put("address", "tnb");
+        paymentData.put("deliveryFee", "10000");
         Payment payment = new Payment("123456789", "VOUCHER", paymentData);
 
         payment.setStatus("REJECTED");
@@ -83,6 +102,8 @@ public class PaymentTest {
     void testCreatePaymentInvalidMethod(){
         HashMap<String, String> paymentData = new HashMap<>();
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
+        paymentData.put("address", "tnb");
+        paymentData.put("deliveryFee", "10000");
 
         assertThrows (IllegalArgumentException.class, ()-> {
             Payment payment = new Payment("123456789", "focer", paymentData);
@@ -92,6 +113,9 @@ public class PaymentTest {
     void testSetStatusToInvalidStatus() {
         HashMap<String, String> paymentData = new HashMap<>();
         paymentData.put("voucherId", "ESHOP1234ABC5678");
+        paymentData.put("address", "tnb");
+        paymentData.put("deliveryFee", "10000");
+
         Payment payment = new Payment("123456789", "VOUCHER", "CHECKING_STATUS", paymentData);
 
         assertThrows(IllegalArgumentException.class, () -> payment.setStatus("focer"));
